@@ -1,5 +1,6 @@
 package com.mojang.mojam.level.tile;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.mojang.mojam.entity.Entity;
@@ -11,7 +12,7 @@ import com.mojang.mojam.network.TurnSynchronizer;
 import com.mojang.mojam.screen.Art;
 import com.mojang.mojam.screen.Screen;
 
-public class Tile implements BBOwner {
+public class Tile implements BBOwner, Serializable {
 	public static final int HEIGHT = 32;
 	public static final int WIDTH = 32;
 

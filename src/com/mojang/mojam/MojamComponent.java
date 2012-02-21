@@ -393,6 +393,9 @@ public class MojamComponent extends Canvas implements Runnable,
 								nextState));
 					}
 				}
+                if (keys.save.isDown) {
+                    level.save();
+                }
 				keys.tick();
 				for (Keys skeys : synchedKeys) {
 					skeys.tick();
@@ -409,6 +412,7 @@ public class MojamComponent extends Canvas implements Runnable,
 				} else {
 					player.setAimByKeyboard();
 				}
+
 
 				level.tick();
 			}

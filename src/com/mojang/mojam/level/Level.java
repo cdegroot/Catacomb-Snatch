@@ -1,7 +1,7 @@
 package com.mojang.mojam.level;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,7 @@ import com.mojang.mojam.screen.Art;
 import com.mojang.mojam.screen.Bitmap;
 import com.mojang.mojam.screen.Screen;
 
-public class Level {
+public class Level implements Serializable {
 	public static final int TARGET_SCORE = 100;
 
 	public final int width, height;
@@ -693,4 +693,36 @@ public class Level {
 			setTile(x, y, tile);
 		}
 	}
+    
+    // File save/load
+    public static final String fileName = "cs.sav";
+        
+    public void save() {        
+        ObjectOutputStream output = null;
+        try {
+            output = new ObjectOutputStream(new FileOutputStream(fileName));
+            output.writeObject(this);
+        } catch (IOException e) {
+            // TODO[CdG] no clue :)
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (Exception e) {
+                    // ignore
+                }
+            }
+        }
+    }
+    
+    public static Level load() throws IOException, ClassNotFoundException {
+        ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileName));
+        try {
+            return (Level) input.readObject();
+        } finally {
+            if (input != null) {
+                input.close();
+            }
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.mojang.mojam.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.mojang.mojam.entity.animation.LargeBombExplodeAnimation;
@@ -11,7 +12,7 @@ import com.mojang.mojam.math.Vec2;
 import com.mojang.mojam.screen.Art;
 import com.mojang.mojam.screen.Screen;
 
-public abstract class Entity implements BBOwner {
+public abstract class Entity implements BBOwner, Serializable {
 
 	public Level level;
 	public boolean removed;
